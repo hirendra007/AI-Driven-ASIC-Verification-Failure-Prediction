@@ -79,42 +79,6 @@ When a developer pushes a git commit, this system:
 
 ---
 
-## 🏗 Project Structure
-
-```
-ai_verification_mvp/
-├── data/                              # Data directory
-│   ├── generate_datasets.py           # Synthetic dataset generator
-│   ├── historical_verification_data.csv
-│   ├── bug_trend_data.csv
-│   ├── git_commits.csv
-│   └── module_dependencies.csv
-├── src/                               # Core ML & analysis modules
-│   ├── feature_engineering.py         # Feature computation pipeline
-│   ├── train_model.py                 # XGBoost training & evaluation
-│   ├── commit_parser.py               # Git commit parser
-│   ├── bug_trend.py                   # Time-series bug forecasting
-│   └── llm_explainer.py               # LLM integration for explanations
-├── regression/                        # Regression orchestration
-│   └── orchestrator.py                # Verilator regression engine
-├── models/                            # Saved model artifacts
-│   ├── xgb_risk_model.joblib          # Trained XGBoost model
-│   ├── model_metadata.json            # Model performance metrics
-│   └── feature_importance.png         # Feature importance plot
-├── outputs/                           # Pipeline execution reports
-│   └── report_*.json                  # Per-commit analysis reports
-├── app.py                             # Streamlit dashboard (main UI)
-├── pipeline.py                        # End-to-end orchestrator
-├── requirements.txt                   # Python dependencies
-├── README.md                          # This file
-├── PRESENTATION.md                    # Presentation slides
-├── ML_QA_GUIDE.md                     # ML Q&A for judges
-├── .gitignore                         # Git ignore rules
-└── .env                               # Environment variables (API keys)
-```
-
----
-
 ## ⚡ Quick Start
 
 ### Prerequisites
@@ -214,8 +178,69 @@ LLM Risk Explanation   (llm_explainer.py)
   • Rate-limited via weekly → monthly summaries
   • Supports: Gemini, GPT, Claude, rule-based fallback
     ↓
-Streamlit Dashboard    (dashboard/app.py)
+Streamlit Dashboard    (app.py)
 ```
+
+---
+
+## 🏗 Project Structure
+
+```
+ai_verification_mvp/
+├── data/                              # Data directory
+│   ├── generate_datasets.py           # Synthetic dataset generator
+│   ├── historical_verification_data.csv
+│   ├── bug_trend_data.csv
+│   ├── git_commits.csv
+│   └── module_dependencies.csv
+├── src/                               # Core ML & analysis modules
+│   ├── feature_engineering.py         # Feature computation pipeline
+│   ├── train_model.py                 # XGBoost training & evaluation
+│   ├── commit_parser.py               # Git commit parser
+│   ├── bug_trend.py                   # Time-series bug forecasting
+│   └── llm_explainer.py               # LLM integration for explanations
+├── regression/                        # Regression orchestration
+│   └── orchestrator.py                # Verilator regression engine
+├── models/                            # Saved model artifacts
+│   ├── xgb_risk_model.joblib          # Trained XGBoost model
+│   ├── model_metadata.json            # Model performance metrics
+│   └── feature_importance.png         # Feature importance plot
+├── outputs/                           # Pipeline execution reports
+│   └── report_*.json                  # Per-commit analysis reports
+├── app.py                             # Streamlit dashboard (main UI)
+├── pipeline.py                        # End-to-end orchestrator
+├── requirements.txt                   # Python dependencies
+├── README.md                          # This file
+├── PRESENTATION.md                    # Presentation slides
+├── ML_QA_GUIDE.md                     # ML Q&A for judges
+├── .gitignore                         # Git ignore rules
+└── .env                               # Environment variables (API keys)
+```
+
+---
+
+## 🤖 ML Model
+
+**Algorithm:** XGBoost Classifier (fallback: sklearn GradientBoostingClassifier)
+
+**Features:**
+- `code_churn` — LOC changed in this commit
+- `historical_bug_density` — bugs per commit (all history)
+- `coverage_trend` — weekly slope of coverage %
+- `module_instability` — variance of bug counts
+- `regression_cost` — historical avg runtime
+- `recent_bug_rate` — avg bugs in last 4 weeks
+- `avg_coverage` — mean coverage last 4 weeks
+- `commit_frequency` — avg commits per week
+- `weeks_with_bugs` — reliability proxy
+- `max_weekly_bugs` — worst-case reference
+
+**Labels:** Derived from historical bug density (above 65th percentile = HIGH RISK)
+
+**Performance:**
+- CV ROC-AUC: 0.62 ± 0.13 (on synthetic data)
+- Training samples: 176
+- Expected on real data: 0.75-0.80 AUC
 
 ---
 
@@ -243,26 +268,6 @@ Streamlit Dashboard    (dashboard/app.py)
 | files_changed | RTL file(s) modified |
 | loc_added | Lines added |
 | loc_deleted | Lines deleted |
-
----
-
-## 🤖 ML Model
-
-**Algorithm:** XGBoost Classifier (fallback: sklearn GradientBoostingClassifier)
-
-**Features:**
-- `code_churn` — LOC changed in this commit
-- `historical_bug_density` — bugs per commit (all history)
-- `coverage_trend` — weekly slope of coverage %
-- `module_instability` — variance of bug counts
-- `regression_cost` — historical avg runtime
-- `recent_bug_rate` — avg bugs in last 4 weeks
-- `avg_coverage` — mean coverage last 4 weeks
-- `commit_frequency` — avg commits per week
-- `weeks_with_bugs` — reliability proxy
-- `max_weekly_bugs` — worst-case reference
-
-**Labels:** Derived from historical bug density (above 65th percentile = HIGH RISK)
 
 ---
 
@@ -362,17 +367,6 @@ ControlUnit ← Decoder ← BranchUnit
 FIFO ← DMA ← AXI ← Cache
 DMA ← FIFO ← ControlUnit
 ```
-
----
-
-## 📜 Design Constraints
-
-Historical dataset contains **only** data available before regression:
-- ✅ loc_changed, commits, bugs_found (from past runs)
-- ✅ coverage_percent, regression_runtime (from past runs)
-- ✅ developer_feedback (from past runs)
-- ❌ No bug severity
-- ❌ No test counts/failures from current run (used only for validation)
 
 ---
 
@@ -503,55 +497,6 @@ jobs:
 
 ---
 
-## 📚 Documentation
-
-### For Users
-- **README.md** (this file) - Setup and usage guide
-- **PRESENTATION.md** - Full presentation slides
-- **Dashboard Help** - Built into Streamlit app
-
-### For Developers
-- **ML_QA_GUIDE.md** - Comprehensive ML Q&A
-- **Code Comments** - Inline documentation in all modules
-- **Docstrings** - Function-level documentation
-
-### For Judges/Evaluators
-- **PRESENTATION.md** - Technical deep dive
-- **ML_QA_GUIDE.md** - Answers to all ML questions
-- **models/model_metadata.json** - Model performance metrics
-
----
-
-## 🤝 Contributing
-
-We welcome contributions! Here's how:
-
-1. **Fork the repository**
-2. **Create a feature branch**: `git checkout -b feature/amazing-feature`
-3. **Make your changes**
-4. **Run tests**: `python -m pytest tests/`
-5. **Commit**: `git commit -m 'Add amazing feature'`
-6. **Push**: `git push origin feature/amazing-feature`
-7. **Open a Pull Request**
-
-### Development Setup
-
-```bash
-# Install development dependencies
-pip install -r requirements-dev.txt
-
-# Run tests
-pytest
-
-# Run linter
-flake8 src/ regression/
-
-# Format code
-black src/ regression/
-```
-
----
-
 ## 🐛 Troubleshooting
 
 ### Common Issues
@@ -596,22 +541,33 @@ streamlit run app.py --server.port 8502
 
 ---
 
-## 🎓 Research & References
+## 🤝 Contributing
 
-### Machine Learning
-- XGBoost: Chen & Guestrin, 2016
-- scikit-learn: Pedregosa et al., 2011
-- Feature Engineering for Time Series: Hyndman & Athanasopoulos
+We welcome contributions! Here's how:
 
-### Verification
-- Verilator: Wilson Snyder
-- SystemVerilog UVM Methodology
-- IEEE 1800-2017 SystemVerilog Standard
+1. **Fork the repository**
+2. **Create a feature branch**: `git checkout -b feature/amazing-feature`
+3. **Make your changes**
+4. **Run tests**: `python -m pytest tests/`
+5. **Commit**: `git commit -m 'Add amazing feature'`
+6. **Push**: `git push origin feature/amazing-feature`
+7. **Open a Pull Request**
 
-### Related Work
-- Predictive Modeling in Software Engineering
-- ML for Hardware Verification (various papers)
-- Bug Prediction Models (Zimmermann et al.)
+### Development Setup
+
+```bash
+# Install development dependencies
+pip install -r requirements-dev.txt
+
+# Run tests
+pytest
+
+# Run linter
+flake8 src/ regression/
+
+# Format code
+black src/ regression/
+```
 
 ---
 
@@ -682,44 +638,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-## 💡 Use Cases
-
-### Startup Teams
-- Quick setup (<5 minutes)
-- Runs on laptops
-- Free and open source
-- Immediate value
-
-### Medium Companies
-- Scales to 50+ modules
-- Integrates with existing tools
-- Customizable thresholds
-- Team collaboration
-
-### Enterprise
-- Handles 200+ modules
-- Multi-project support
-- Advanced analytics
-- Enterprise support available
-
----
-
-## 🎯 Success Stories (Projected)
-
-> *"VerifAI cut our regression time by 45%. We now find critical bugs on day 1."*  
-> — Senior Verification Engineer
-
-> *"The bug forecasting feature changed how we plan milestones."*  
-> — Verification Manager
-
-> *"We retrained on our data in 5 minutes. It immediately understood our codebase."*  
-> — Principal Engineer
-
----
-
 **Built with ❤️ for the verification community**
 
 *Star ⭐ this repo if you find it useful!*
-#   A I - D r i v e n - A S I C - V e r i f i c a t i o n - F a i l u r e - P r e d i c t i o n 
- 
- 
