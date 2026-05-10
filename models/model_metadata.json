@@ -1,0 +1,22 @@
+{
+  "cv_roc_auc_mean": 0.620344298245614,
+  "cv_roc_auc_std": 0.1284307311237606,
+  "train_roc_auc": 0.9933446430901736,
+  "n_training_samples": 176,
+  "class_distribution": {
+    "1": "97",
+    "0": "79"
+  },
+  "feature_columns": [
+    "code_churn",
+    "historical_bug_density",
+    "coverage_trend",
+    "module_instability",
+    "regression_cost",
+    "recent_bug_rate",
+    "avg_coverage",
+    "commit_frequency",
+    "weeks_with_bugs",
+    "max_weekly_bugs"
+  ]
+}

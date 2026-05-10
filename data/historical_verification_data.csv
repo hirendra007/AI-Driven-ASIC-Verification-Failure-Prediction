@@ -1,0 +1,209 @@
+week,month,module_name,loc_changed,commits,bugs_found,coverage_percent,regression_runtime,developer_feedback
+1,1,ALU,61,4,4,80.4,25,overflow edge case in multiplier
+1,1,Decoder,23,2,0,87.7,14,clean run
+1,1,Cache,48,2,2,73.3,35,memory stall issue
+1,1,DMA,59,1,3,76.3,31,channel arbitration bug
+1,1,AXI,35,1,1,84.6,21,outstanding transaction overflow
+1,1,FIFO,45,2,6,85.5,14,read pointer wrap
+1,1,BranchUnit,54,2,1,75.2,22,BTB miss under loop
+1,1,ControlUnit,44,1,2,84.0,19,FSM deadlock state
+2,1,ALU,32,3,8,74.1,32,saturate mode failure
+2,1,Decoder,18,1,0,91.1,11,clean run
+2,1,Cache,99,3,3,69.5,49,memory stall issue
+2,1,DMA,58,3,5,76.3,34,address wrap issue
+2,1,AXI,5,1,0,86.0,20,clean run
+2,1,FIFO,22,5,5,89.1,14,synchronizer metastability
+2,1,BranchUnit,56,1,1,79.7,25,branch misprediction on ret
+2,1,ControlUnit,35,3,5,85.2,22,FSM deadlock state
+3,1,ALU,91,1,0,79.7,26,clean run
+3,1,Decoder,28,2,2,88.4,13,decode mismatch on illegal opcode
+3,1,Cache,25,6,8,72.3,36,cache coherency violation
+3,1,DMA,67,3,6,75.9,31,descriptor fetch issue
+3,1,AXI,31,3,5,81.3,20,burst boundary crossing
+3,1,FIFO,22,5,4,85.9,18,depth count off by one
+3,1,BranchUnit,28,1,4,82.2,19,branch misprediction on ret
+3,1,ControlUnit,45,6,6,86.7,17,mode register not latched
+4,1,ALU,66,6,12,78.9,27,pipeline stall during signed division
+4,1,Decoder,22,3,0,89.4,16,clean run
+4,1,Cache,46,1,1,73.6,39,dirty bit not set
+4,1,DMA,39,6,4,73.3,35,address wrap issue
+4,1,AXI,49,1,2,79.7,33,RRESP error not propagated
+4,1,FIFO,44,2,1,87.8,24,read pointer wrap
+4,1,BranchUnit,24,1,1,80.4,24,conditional jump timing
+4,1,ControlUnit,53,1,0,86.6,28,clean run
+1,2,ALU,51,3,6,77.7,25,saturate mode failure
+1,2,Decoder,34,3,0,89.2,15,clean run
+1,2,Cache,49,2,4,74.1,37,eviction policy bug
+1,2,DMA,69,4,8,75.3,38,burst transfer hang
+1,2,AXI,49,4,5,84.1,30,outstanding transaction overflow
+1,2,FIFO,41,2,1,82.3,23,synchronizer metastability
+1,2,BranchUnit,55,2,1,78.8,24,speculative fetch error
+1,2,ControlUnit,29,1,2,82.4,14,clock gate enable glitch
+2,2,ALU,62,6,9,81.8,27,pipeline stall during signed division
+2,2,Decoder,17,1,0,91.8,10,clean run
+2,2,Cache,55,5,20,72.8,40,cache coherency violation
+2,2,DMA,71,1,4,81.7,33,channel arbitration bug
+2,2,AXI,42,2,2,87.5,20,AXI handshake violation
+2,2,FIFO,25,1,3,91.6,14,overflow under stress
+2,2,BranchUnit,61,5,4,84.8,28,conditional jump timing
+2,2,ControlUnit,29,3,5,86.7,18,FSM deadlock state
+3,2,ALU,27,5,13,79.3,26,carry propagation bug
+3,2,Decoder,37,1,0,93.8,10,clean run
+3,2,Cache,100,3,10,71.2,50,eviction policy bug
+3,2,DMA,23,1,0,76.9,25,clean run
+3,2,AXI,42,1,1,87.4,24,burst boundary crossing
+3,2,FIFO,22,1,0,84.5,14,clean run
+3,2,BranchUnit,57,3,3,84.0,27,speculative fetch error
+3,2,ControlUnit,27,2,2,84.9,12,FSM deadlock state
+4,2,ALU,73,1,2,74.3,28,arithmetic shift right incorrect
+4,2,Decoder,17,2,0,88.9,10,clean run
+4,2,Cache,89,2,2,73.1,49,tag array mismatch
+4,2,DMA,62,1,1,78.2,40,burst transfer hang
+4,2,AXI,33,3,1,83.2,25,RRESP error not propagated
+4,2,FIFO,22,2,2,87.0,17,overflow under stress
+4,2,BranchUnit,17,3,3,82.5,14,indirect branch resolution
+4,2,ControlUnit,36,1,0,83.2,20,clean run
+1,3,ALU,37,2,0,76.5,21,clean run
+1,3,Decoder,35,4,4,91.2,15,instruction decode timing
+1,3,Cache,75,1,1,76.0,41,dirty bit not set
+1,3,DMA,63,1,3,74.6,37,address wrap issue
+1,3,AXI,61,3,3,81.9,31,AWLEN mismatch
+1,3,FIFO,33,1,2,89.7,15,depth count off by one
+1,3,BranchUnit,28,4,3,78.3,19,BTB miss under loop
+1,3,ControlUnit,47,2,0,90.4,19,clean run
+2,3,ALU,76,1,3,80.2,26,overflow edge case in multiplier
+2,3,Decoder,22,6,3,96.1,15,decode mismatch on illegal opcode
+2,3,Cache,31,3,11,77.4,34,dirty bit not set
+2,3,DMA,49,2,4,79.3,29,descriptor fetch issue
+2,3,AXI,39,2,3,83.8,31,AWLEN mismatch
+2,3,FIFO,45,1,1,86.2,18,overflow under stress
+2,3,BranchUnit,33,3,3,82.7,28,BTB miss under loop
+2,3,ControlUnit,21,1,1,78.8,20,FSM deadlock state
+3,3,ALU,62,2,4,76.6,30,arithmetic shift right incorrect
+3,3,Decoder,41,1,0,92.8,12,clean run
+3,3,Cache,66,1,2,70.9,41,eviction policy bug
+3,3,DMA,44,6,9,76.5,27,interrupt not asserted
+3,3,AXI,65,5,8,79.1,29,AWLEN mismatch
+3,3,FIFO,45,3,2,86.7,17,read pointer wrap
+3,3,BranchUnit,18,3,4,82.5,19,speculative fetch error
+3,3,ControlUnit,49,2,3,85.5,21,clock gate enable glitch
+4,3,ALU,36,2,3,73.6,24,pipeline stall during signed division
+4,3,Decoder,29,2,0,89.0,14,clean run
+4,3,Cache,63,3,7,76.7,39,dirty bit not set
+4,3,DMA,47,3,8,71.0,31,channel arbitration bug
+4,3,AXI,51,2,1,85.1,24,AXI handshake violation
+4,3,FIFO,44,8,2,85.4,22,depth count off by one
+4,3,BranchUnit,55,1,1,74.7,26,BTB miss under loop
+4,3,ControlUnit,39,2,1,86.9,23,mode register not latched
+1,4,ALU,104,6,9,75.9,30,pipeline stall during signed division
+1,4,Decoder,19,1,0,90.7,13,clean run
+1,4,Cache,60,2,6,68.9,41,cache coherency violation
+1,4,DMA,61,2,1,77.1,32,interrupt not asserted
+1,4,AXI,37,1,2,81.1,23,RRESP error not propagated
+1,4,FIFO,39,2,1,87.5,19,empty flag glitch
+1,4,BranchUnit,59,4,2,86.4,27,indirect branch resolution
+1,4,ControlUnit,23,1,0,85.2,18,clean run
+2,4,ALU,70,6,8,82.8,30,pipeline stall during signed division
+2,4,Decoder,39,10,5,88.5,17,instruction decode timing
+2,4,Cache,83,3,10,66.7,46,memory stall issue
+2,4,DMA,55,2,1,74.4,33,descriptor fetch issue
+2,4,AXI,50,3,0,82.9,32,clean run
+2,4,FIFO,31,5,4,89.4,14,overflow under stress
+2,4,BranchUnit,59,3,5,80.1,24,speculative fetch error
+2,4,ControlUnit,40,1,1,86.4,23,power state transition hang
+3,4,ALU,69,6,6,81.3,28,carry propagation bug
+3,4,Decoder,35,2,0,88.6,20,clean run
+3,4,Cache,25,2,3,73.4,35,memory stall issue
+3,4,DMA,38,3,4,75.6,27,descriptor fetch issue
+3,4,AXI,47,3,2,78.4,26,burst boundary crossing
+3,4,FIFO,23,1,2,93.0,18,empty flag glitch
+3,4,BranchUnit,80,1,3,81.3,28,BTB miss under loop
+3,4,ControlUnit,48,6,2,85.6,22,power state transition hang
+4,4,ALU,68,2,3,80.7,24,arithmetic shift right incorrect
+4,4,Decoder,33,1,0,89.9,10,clean run
+4,4,Cache,26,4,11,77.7,37,dirty bit not set
+4,4,DMA,38,2,4,75.1,33,interrupt not asserted
+4,4,AXI,50,3,2,84.2,26,outstanding transaction overflow
+4,4,FIFO,36,3,0,82.4,18,clean run
+4,4,BranchUnit,32,3,1,82.2,23,speculative fetch error
+4,4,ControlUnit,52,6,2,88.7,21,reset sequence incomplete
+1,5,ALU,53,1,2,74.4,28,pipeline stall during signed division
+1,5,Decoder,31,3,0,87.9,16,clean run
+1,5,Cache,49,2,6,77.3,42,dirty bit not set
+1,5,DMA,57,1,3,72.2,38,address wrap issue
+1,5,AXI,60,1,2,83.6,28,burst boundary crossing
+1,5,FIFO,43,6,3,85.3,14,empty flag glitch
+1,5,BranchUnit,36,3,1,76.7,26,indirect branch resolution
+1,5,ControlUnit,49,4,1,83.0,16,power state transition hang
+2,5,ALU,70,3,3,79.0,27,saturate mode failure
+2,5,Decoder,32,1,1,90.6,11,opcode extension handling
+2,5,Cache,87,1,2,69.3,42,eviction policy bug
+2,5,DMA,70,1,1,75.6,31,descriptor fetch issue
+2,5,AXI,17,1,3,86.2,22,outstanding transaction overflow
+2,5,FIFO,26,6,6,91.1,14,depth count off by one
+2,5,BranchUnit,32,2,4,87.1,24,conditional jump timing
+2,5,ControlUnit,57,2,3,84.0,27,FSM deadlock state
+3,5,ALU,62,5,5,75.8,23,overflow edge case in multiplier
+3,5,Decoder,20,1,0,91.5,9,clean run
+3,5,Cache,80,5,14,77.0,44,memory stall issue
+3,5,DMA,38,3,6,72.3,29,descriptor fetch issue
+3,5,AXI,35,7,7,85.7,25,outstanding transaction overflow
+3,5,FIFO,40,2,3,88.8,17,synchronizer metastability
+3,5,BranchUnit,44,6,12,78.3,16,indirect branch resolution
+3,5,ControlUnit,36,1,0,86.8,20,clean run
+4,5,ALU,36,3,4,77.2,21,overflow edge case in multiplier
+4,5,Decoder,27,1,2,88.9,13,opcode extension handling
+4,5,Cache,67,1,2,71.3,43,write-back inconsistency
+4,5,DMA,96,1,2,71.5,33,address wrap issue
+4,5,AXI,34,3,0,76.9,27,clean run
+4,5,FIFO,22,1,0,88.7,17,clean run
+4,5,BranchUnit,69,1,0,79.8,22,clean run
+4,5,ControlUnit,35,3,5,90.1,15,power state transition hang
+1,6,ALU,54,3,5,80.2,22,saturate mode failure
+1,6,Decoder,28,3,0,89.6,14,clean run
+1,6,Cache,44,1,1,75.5,40,eviction policy bug
+1,6,DMA,74,1,0,78.8,38,clean run
+1,6,AXI,60,1,1,82.1,28,burst boundary crossing
+1,6,FIFO,28,4,5,91.0,17,overflow under stress
+1,6,BranchUnit,29,2,3,74.8,19,branch misprediction on ret
+1,6,ControlUnit,32,8,10,86.4,18,mode register not latched
+2,6,ALU,66,3,9,79.5,27,carry propagation bug
+2,6,Decoder,27,3,2,95.7,15,instruction decode timing
+2,6,Cache,70,2,0,75.7,40,clean run
+2,6,DMA,64,3,9,70.8,38,burst transfer hang
+2,6,AXI,34,1,1,92.3,29,AWLEN mismatch
+2,6,FIFO,56,5,3,91.8,18,synchronizer metastability
+2,6,BranchUnit,35,5,10,75.1,24,BTB miss under loop
+2,6,ControlUnit,31,3,2,87.1,14,power state transition hang
+3,6,ALU,77,2,4,76.6,29,overflow edge case in multiplier
+3,6,Decoder,46,3,1,92.8,20,instruction decode timing
+3,6,Cache,61,1,1,70.8,40,tag array mismatch
+3,6,DMA,59,3,2,75.7,30,descriptor fetch issue
+3,6,AXI,48,3,3,84.8,29,burst boundary crossing
+3,6,FIFO,20,3,4,86.6,12,overflow under stress
+3,6,BranchUnit,55,3,3,82.5,21,speculative fetch error
+3,6,ControlUnit,5,5,4,86.4,18,mode register not latched
+4,6,ALU,42,1,0,79.4,22,clean run
+4,6,Decoder,17,2,3,91.8,12,NOP decode issue
+4,6,Cache,62,1,3,69.2,44,cache coherency violation
+4,6,DMA,61,3,6,75.6,36,descriptor fetch issue
+4,6,AXI,38,3,3,83.4,31,AWLEN mismatch
+4,6,FIFO,19,1,1,88.6,16,read pointer wrap
+4,6,BranchUnit,44,3,1,83.5,26,indirect branch resolution
+4,6,ControlUnit,70,2,1,87.1,25,mode register not latched
+1,7,ALU,52,3,4,81.4,28,overflow edge case in multiplier
+1,7,Decoder,33,1,0,88.7,9,clean run
+1,7,Cache,64,6,6,71.8,45,tag array mismatch
+1,7,DMA,30,1,0,74.5,31,clean run
+1,7,AXI,27,4,1,82.7,25,AWLEN mismatch
+1,7,FIFO,34,7,3,89.1,20,synchronizer metastability
+1,7,BranchUnit,38,2,4,80.3,22,branch misprediction on ret
+1,7,ControlUnit,40,1,2,85.0,22,FSM deadlock state
+2,7,ALU,36,2,1,77.9,18,carry propagation bug
+2,7,Decoder,24,2,1,93.6,18,instruction decode timing
+2,7,Cache,81,2,4,69.2,41,cache coherency violation
+2,7,DMA,56,2,6,77.0,37,burst transfer hang
+2,7,AXI,45,6,9,79.7,24,outstanding transaction overflow
+2,7,FIFO,16,1,0,88.2,9,clean run
+2,7,BranchUnit,49,2,0,76.1,26,clean run
+2,7,ControlUnit,28,3,1,84.1,19,mode register not latched

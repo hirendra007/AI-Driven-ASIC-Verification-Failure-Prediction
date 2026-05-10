@@ -1,0 +1,10 @@
+module,depends_on
+ALU,ControlUnit
+Decoder,ControlUnit
+BranchUnit,Decoder
+BranchUnit,ALU
+Cache,DMA
+DMA,AXI
+Cache,AXI
+FIFO,DMA
+ControlUnit,FIFO
